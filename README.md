@@ -1,2 +1,2 @@
 # CustomListClass
-devCodeCamp recreation of the C# Custom List Class
+devCodeCamp Custom List Group Project

@@ -1,0 +1,88 @@
+CustomList<T> - Operator Method
+
+Removes all instances of elements in second List<T> from first List<T>.
+
+
+
+Method Signature:
+public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+
+
+
+Parameters:
+
+CustomList<T> listOne
+
+
+CustomList<T> listTwo
+List of values to be removed from listOne.  If this is an empty list, listOne will be returned.  
+
+
+Return Type:
+
+CustomList<T>
+Will return listOne with all instances of listTwo's elements removed.  If listOne does not contain any elements in 
+listTwo, or if listTwo is empty, listOne will be returned.
+
+
+
+Example:
+
+using System.Collections;
+
+//Constructor & Member Variables 
+
+ public class CustomList<T> : IEnumerable
+    {
+        T[] customListArray;
+
+        private int capacity;
+
+        public int Capacity { get => capacity; set => capacity = value; }
+
+        private int count;
+
+        public int Count { get => count; }
+
+        public T this[int index] { get => customListArray[index]; set => customListArray[index] = value; }
+
+        
+        public CustomList()
+        {
+            count = 0;
+            capacity = 4;
+            customListArray = new T[4];
+        }
+
+// - operator method
+
+ public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            for (int i = 0; i < listTwo.Count; i++)
+            {
+                while(listOne.Contains(listTwo[i]))
+                {
+                    listOne.Remove(listTwo[i]);
+                }
+               
+            }
+            return listOne;
+        }
+}
+
+public class Example
+{
+	public static void Main()
+	{
+	CustomList<int> listOne = new CustomList<int>() { 1, 2, 4, 4, 2, 6 }
+	CustomList<int> listTwo = new CustomList<int>() { 2, 4 }
+
+	//Will create our two lists.  listTwo is a list of elements to be removed.
+	
+	CustomList<int> resultList = listOne - listTwo;
+
+	//resultList = { 1, 6 }
+	//Calling our - operator.  All instances of listTwo's elements will be removed from listOne.
+}
+
+
